@@ -23,7 +23,7 @@ export default {
     addPlayer: function (player) {
       console.log(player)
       let scope = this
-      console.log(scope.$root)
+      console.log(scope.$root.$data)
     }
   }
 }
