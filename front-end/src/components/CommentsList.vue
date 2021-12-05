@@ -1,15 +1,17 @@
 <template>
 <div class="comments">
-  <div class="comment" v-for="comment in comments" :key="comment.name">
+  <div class="comment" v-for="comment in comments" :key="comment.id">
     <div class="info">
       <h1>{{comment.name}}</h1>
       <p>{{comment.text}}</p>
     </div>
     <div class="commentTop5">
-      <div class="commentPlayer" v-for="player in comment.top5" :key="player">
-        <p>{{player}}</p>
+      <div class="commentPlayer" v-for="player in comment.top5" :key="player.name">
+        <p>{{player.name}}</p>
       </div>
     </div>
+    <br>
+    <button id="removeButton" v-on:click="removeComment(comment.id)">Remove Comment</button>
   </div>
 </div>
 </template>
@@ -19,6 +21,19 @@ export default {
   name: 'CommentsList',
   props: {
     comments: Array
+  },
+  methods: {
+    removeComment: function (commentID) {
+      console.log(commentID)
+      let i = 0;
+      while (i < this.$root.$data.comments.length) {
+        if (this.$root.$data.comments[i].id === commentID) {
+          this.$root.$data.comments.splice(i,1);
+        } else {
+          ++i;
+        }
+      }
+    }
   }
 }
 </script>

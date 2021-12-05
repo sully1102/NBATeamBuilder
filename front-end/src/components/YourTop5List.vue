@@ -1,6 +1,6 @@
 <template>
 <div class="players">
-  <div class="player" v-for="player in yourTop5" :key="player.id">
+  <div class="player" v-for="player in yourTop5" :key="player.name">
     <div class="info">
       <h1>{{player.name}}</h1>
       <p>{{player.position}}</p>
@@ -8,22 +8,29 @@
     <div class="image">
       <img v-bind:src="player.imgsrc" />
     </div>
-    <button id="removeButton" >Remove Player</button>
+    <button id="removeButton" v-on:click="removePlayer(player.name)">Remove Player</button>
   </div>
 </div>
 </template>
 
 <script>
+//import axios from 'axios';
 export default {
   name: 'YourTop5List',
   props: {
     yourTop5: Array
   },
   methods: {
-    addPlayer: function (player) {
-      console.log(player)
-      let scope = this
-      console.log(scope.$root.$data)
+    removePlayer: function (playerName) {
+      console.log(playerName)
+      let i = 0;
+      while (i < this.$root.$data.yourTop5.length) {
+        if (this.$root.$data.yourTop5[i].name === playerName) {
+          this.$root.$data.yourTop5.splice(i,1);
+        } else {
+          ++i;
+        }
+      }
     }
   }
 }
@@ -34,6 +41,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 80px;
 }
 
 .player {

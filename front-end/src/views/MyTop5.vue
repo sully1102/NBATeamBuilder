@@ -25,6 +25,7 @@
 </template>
 
 <script>
+//import axios from 'axios';
 import MyTop5List from "../components/MyTop5List.vue"
 import CommentsList from "../components/CommentsList.vue"
 export default {
@@ -49,20 +50,32 @@ export default {
   },
   methods: {
     addComment() {
-      if (this.$root.$data.comments.length === 5) {
         this.$root.$data.comments.push({
+          id: this.$root.$data.comments.length,
           name: this.addedName,
           text: this.addedComment,
           top5: this.getTop5()
         });
         this.addedName = '';
         this.addedComment = '';
-      } else {
-        alert("You have to create your own Top 5 before leaving a comment!");
-      }
+      // if (this.$root.$data.yourTop5.length === 5) {
+      //   if (this.addedName != '' && this.addedComment != '') {
+      //     this.$root.$data.comments.push({
+      //       name: this.addedName,
+      //       text: this.addedComment,
+      //       top5: this.getTop5()
+      //     });
+      //     this.addedName = '';
+      //     this.addedComment = '';
+      //   } else {
+      //     alert("You need to add your name and comment in order to leave a comment")
+      //   }
+      // } else {
+      //   alert("You must have a Top5 before you comment")
+      // }
     },
     getTop5() {
-      return ["Something"];
+      return this.$root.$data.yourTop5;
     }
   }
 }
