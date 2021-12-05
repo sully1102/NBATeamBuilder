@@ -24,7 +24,7 @@ const itemSchema = new mongoose.Schema({
 // Create a model for comments in the database.
 const Comment = mongoose.model('Comment', commentSchema);
 
-// Get a list of all of the comments in the museum.
+// Get a list of all of the comments in the database.
 app.get('/api/comments', async (req, res) => {
   try {
     let comments = await Comment.find();
