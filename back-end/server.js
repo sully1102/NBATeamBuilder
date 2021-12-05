@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/comments', {
 // Create a scheme for comments in the database
 const itemSchema = new mongoose.Schema({
   name: String,
-  comment: String,
+  text: String,
   top5: Array,
 });
 
@@ -39,7 +39,7 @@ app.get('/api/comments', async (req, res) => {
 app.post('/api/comments', async (req, res) => {
   const comment = new Comment({
     name: req.body.name,
-    comment: req.body.comment,
+    text: req.body.text,
     top5: req.body.top5
   });
   try {
